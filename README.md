@@ -1,24 +1,3 @@
-# teaching-mandelbrot
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# Teaching Mandelbrot
+[Live Site]()
+The Mandelbrot Set is a famous mathematical set that can be used to study fractal geometry. My partner needed a resource to show how this set is created using recursive iteration rules, so I created this simple site for her to do just that.
