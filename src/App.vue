@@ -11,7 +11,7 @@
             id="c-real"
             label="Real"
             label-for="real-input">
-              <b-form-input class="ml-2" type="number" v-model="real" placeholder="Enter the real component" />
+              <b-form-input class="ml-2" number type="number" v-model="real" placeholder="Enter the real component" />
 
             </b-form-group>
             <b-form-group
@@ -19,14 +19,14 @@
             id="c-imag"
             label="Imaginary"
             label-for="imag-input">
-              <b-form-input class="ml-2" type="number" v-model="imag" placeholder="Enter the imaginary component" />
+              <b-form-input class="ml-2" number type="number" v-model="imag" placeholder="Enter the imaginary component" />
             </b-form-group>
              <b-form-group
             class="p-2"
             id="iterations"
             label="# of iterations"
             label-for="iterations-input">
-              <b-form-input class="ml-2" type="number" v-model="numIterations" />
+              <b-form-input class="ml-2" number type="number" v-model="numIterations" />
             </b-form-group>
 
           </b-form>
@@ -57,21 +57,26 @@ export default {
   },
   computed: {
     values(){
-      let seed = complex(0,0);
-       const c = complex(this.real, this.imag);
-       const values = [];
-       for(let i = 0; i < this.numIterations; i++){
-         const val = seed.pow(2).add(c);
-         values.push(val.round(5).toString());
-         if(val.toString() === 'Infinity'){
-           return values
-         }
-         seed = val.clone();
-       }
-       return values
+      let x = 0;
+      let y = 0;
+      const values = [];
+      for(let i = 0; i < this.numIterations; i++){
+        let oldX = x;
+        let oldY = y;
+        let squaredX = Math.pow(oldX, 2);
+        let squaredY = Math.pow(oldY, 2);
+        if(squaredX === Infinity || squaredY === Infinity ){
+          values.push(Infinity);
+          return values;
+        }
+        x = squaredX - squaredY + this.real;
+        y = 2 * oldX * oldY + this.imag;
+        values.push(complex(x,y).toString());
+      }
+      return values;
     },
     complexExpression(){
-      return complex(this.real, this.imag).round(5).toString()
+      return complex(this.real, this.imag).toString()
   }
 }
 }
