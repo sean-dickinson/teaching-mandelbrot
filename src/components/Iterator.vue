@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-content-center">
     <div class="col-6">
-      <b-form inline>
+      <b-form @submit.stop.prevent inline>
         <b-form-group
             class="p-2"
             id="iterations"

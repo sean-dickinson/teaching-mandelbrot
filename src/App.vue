@@ -6,7 +6,7 @@
         <div class="col-6">
           <p>Choose the <em>c</em> value that you would like to iterate in <em>z</em> &#8594; <em>z<sup>2</sup></em> + <em>c</em></p>
           <h3>c = {{ c }}</h3>
-          <b-form inline>
+          <b-form @submit.stop.prevent inline>
             <b-form-group
               class="p-2"
               id="c-real"
@@ -40,7 +40,7 @@
           <p class="mt-2">What seed would you like to iterate?</p>
 
           <h3>seed = {{ seed }}</h3>
-          <b-form inline>
+          <b-form @submit.stop.prevent inline>
             <b-form-group
               class="p-2"
               id="c-real"
