@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Iteration } from '@/types'
-import { displayComplex, displayNumber } from '@/helpers/display'
+import type { Iteration } from "@/types";
+import { displayComplex, displayNumber } from "@/helpers/display";
 const props = defineProps<{
-  iterations: Iteration[]
-}>()
+  iterations: Iteration[];
+}>();
 </script>
 
 <template>

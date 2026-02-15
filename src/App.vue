@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import ComplexInput from '@/components/ComplexInput.vue'
-import DisplayTable from '@/components/DisplayTable.vue'
-import { ref } from 'vue'
-import { useIterator } from './composables/useIterator'
-import { complex } from 'mathjs'
-import { displayComplex } from './helpers/display'
+import ComplexInput from "@/components/ComplexInput.vue";
+import DisplayTable from "@/components/DisplayTable.vue";
+import { ref } from "vue";
+import { useIterator } from "./composables/useIterator";
+import { complex } from "mathjs";
+import { displayComplex } from "./helpers/display";
 
-const z = ref(complex(0, 0))
-const c = ref(complex(0, 1))
-const numIterations = ref(20)
-const iterations = useIterator(z, c, numIterations)
+const z = ref(complex(0, 0));
+const c = ref(complex(0, 1));
+const numIterations = ref(20);
+const iterations = useIterator(z, c, numIterations);
 </script>
 
 <template>

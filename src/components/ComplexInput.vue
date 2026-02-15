@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { complex, type Complex } from 'mathjs'
+import { complex, type Complex } from "mathjs";
 const model = defineModel<Complex>({
   required: true,
   default: () => complex(0, 0),
   set: (value: Complex) => complex(value.re, value.im),
-})
+});
 </script>
 
 <template>
