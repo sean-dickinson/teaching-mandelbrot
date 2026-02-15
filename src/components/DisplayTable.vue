@@ -4,6 +4,10 @@ import { displayComplex, displayNumber } from "@/helpers/display";
 const props = defineProps<{
   iterations: Iteration[];
 }>();
+
+const emit = defineEmits<{
+  (e: "add-more-iterations"): void;
+}>();
 </script>
 
 <template>
@@ -16,10 +20,17 @@ const props = defineProps<{
       </tr>
     </thead>
     <tbody>
-      <tr v-for="iteration in iterations" :key="iteration.iteration">
-        <td>{{ iteration.iteration }}</td>
+      <tr v-for="(iteration, index) in iterations" :key="index">
+        <td>{{ index + 1 }}</td>
         <td>{{ displayComplex(iteration.value) }}</td>
         <td>{{ displayNumber(iteration.distance) }}</td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <button class="add-iterations" @click="emit('add-more-iterations')">
+            Add More Iterations
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -49,6 +60,20 @@ table {
 
   & tbody tr:nth-child(even) {
     background-color: #f9f9f9;
+  }
+}
+
+.add-iterations {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
   }
 }
 </style>

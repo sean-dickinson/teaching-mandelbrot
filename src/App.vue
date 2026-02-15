@@ -1,15 +1,31 @@
 <script setup lang="ts">
 import ComplexInput from "@/components/ComplexInput.vue";
 import DisplayTable from "@/components/DisplayTable.vue";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useIterator } from "./composables/useIterator";
-import { complex } from "mathjs";
+import { add, complex, type Complex } from "mathjs";
 import { displayComplex } from "./helpers/display";
+import type { Iteration } from "./types";
 
 const z = ref(complex(0, 0));
 const c = ref(complex(0, 1));
-const numIterations = ref(20);
-const iterations = useIterator(z, c, numIterations);
+const iterations = ref<Iteration[]>([]);
+
+const addMoreIterations = () => {
+  const lastIteration = iterations.value.at(-1)?.value ?? complex(0, 0);
+  iterations.value = [...iterations.value, ...useIterator(lastIteration, c).value];
+};
+
+watch(
+  () => c.value.toString(),
+  () => {
+    iterations.value = [];
+    addMoreIterations();
+  },
+  {
+    immediate: true,
+  },
+);
 </script>
 
 <template>
@@ -19,19 +35,10 @@ const iterations = useIterator(z, c, numIterations);
       <h2>C = {{ displayComplex(c) }}</h2>
       <div class="form-group">
         <complex-input v-model="c" />
-        <label for="iterations"
-          >Number of Iterations
-          <input
-            id="iterations"
-            type="number"
-            v-model.number="numIterations"
-            class="form-control"
-          />
-        </label>
       </div>
     </header>
     <section>
-      <display-table :iterations="iterations" />
+      <display-table :iterations="iterations" @add-more-iterations="addMoreIterations" />
     </section>
   </main>
 </template>
