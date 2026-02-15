@@ -1,42 +1,20 @@
-<template>
-  <b-form-group
-          class="p-2"
-          id="c-real"
-          label="Real"
-          label-for="real-input"
-        >
-          <b-form-input
-            class="ml-2"
-            number
-            type="number"
-            v-model="real"
-            placeholder="Enter the real component"
-          />
-        </b-form-group>
-        <b-form-group
-          class="p-2"
-          id="c-imag"
-          label="Imaginary"
-          label-for="imag-input"
-        >
-          <b-form-input
-            class="ml-2"
-            number
-            type="number"
-            v-model="imaginary"
-            placeholder="Enter the imaginary component"
-          />
-        </b-form-group>
-</template>
-
-<script>
-export default {
-  data() {
-      return {
-        real: 0,
-        imag: 0,
-      };
-    },
-
-}
+<script setup lang="ts">
+import { complex, type Complex } from "mathjs";
+const model = defineModel<Complex>({
+  required: true,
+  default: () => complex(0, 0),
+  set: (value: Complex) => complex(value.re, value.im),
+});
 </script>
+
+<template>
+  <label for="real"
+    >Real Component
+    <input id="real" type="number" v-model.number="model.re" class="form-control" />
+  </label>
+
+  <label for="imaginary"
+    >Imaginary Component
+    <input id="imaginary" type="number" v-model.number="model.im" class="form-control" />
+  </label>
+</template>
