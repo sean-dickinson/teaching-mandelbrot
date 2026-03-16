@@ -11,7 +11,7 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "oxlint . && npm run format",
-    "lint:fix":"oxlint . --fix && npm run format:fix",
+    "lint:fix": "oxlint . --fix && npm run format:fix",
     "format": "oxfmt src/ --check",
     "format:fix": "oxfmt src/"
   },
@@ -21,6 +21,8 @@
     "vue-router": "^5.0.1"
   },
   "devDependencies": {
+    "@testing-library/user-event": "^14.6.1",
+    "@testing-library/vue": "^8.1.0",
     "@tsconfig/node24": "^24.0.4",
     "@types/jsdom": "^27.0.0",
     "@types/node": "^24.10.9",
