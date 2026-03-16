@@ -3,11 +3,10 @@ import ComplexInput from "@/components/ComplexInput.vue";
 import DisplayTable from "@/components/DisplayTable.vue";
 import { ref, watch } from "vue";
 import { useIterator } from "./composables/useIterator";
-import { add, complex, type Complex } from "mathjs";
+import { complex, type Complex } from "mathjs";
 import { displayComplex } from "./helpers/display";
 import type { Iteration } from "./types";
 
-const z = ref(complex(0, 0));
 const c = ref(complex(0, 1));
 const iterations = ref<Iteration[]>([]);
 
